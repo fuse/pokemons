@@ -1,0 +1,194 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Pokemons",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1": {
+
+        },
+        "/api/v1/pokemons": {
+            "summary": "Path used to manage the list of pokemons.",
+            "description": "The REST endpoint/path used to list and create zero or more `Pokemon` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Pokemon"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Pokemon` entities."
+                    }
+                },
+                "operationId": "getPokemons",
+                "summary": "List All Pokemons",
+                "description": "Gets a list of all `Pokemon` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Pokemon` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Pokemon"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createPokemon",
+                "summary": "Create a Pokemon",
+                "description": "Creates a new instance of a `Pokemon`."
+            }
+        },
+        "/api/v1/pokemons/{pokemonId}": {
+            "summary": "Path used to manage a single Pokemon.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Pokemon`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pokemon"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Pokemon`."
+                    }
+                },
+                "operationId": "getPokemon",
+                "summary": "Get a Pokemon",
+                "description": "Gets the details of a single instance of a `Pokemon`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Pokemon` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Pokemon"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updatePokemon",
+                "summary": "Update a Pokemon",
+                "description": "Updates an existing `Pokemon`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deletePokemon",
+                "summary": "Delete a Pokemon",
+                "description": "Deletes an existing `Pokemon`."
+            },
+            "parameters": [
+                {
+                    "name": "pokemonId",
+                    "description": "A unique identifier for a `Pokemon`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Pokemon": {
+                "title": "Root Type for Pokemon",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "type_1": {
+                        "type": "string"
+                    },
+                    "type_2": {
+                        "type": "string"
+                    },
+                    "total": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "hp": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "attack": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "defense": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "sp_atk": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "sp_def": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "speed": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "generation": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "legendary": {
+                        "type": "boolean"
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "name": "Bulbasaur",
+                    "type_1": "Grass",
+                    "type_2": "Poison",
+                    "total": 318,
+                    "hp": 45,
+                    "attack": 49,
+                    "defense": 49,
+                    "sp_atk": 65,
+                    "sp_def": 65,
+                    "speed": 45,
+                    "generation": 1,
+                    "legendary": false
+                }
+            }
+        }
+    }
+}
